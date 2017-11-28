@@ -83,14 +83,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIConnect.cs" />
-    <Compile Include="MailHandler.cs" />
+    <Compile Include="EmailDataHandler.cs" />
+    <Compile Include="GmailAPIHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaintSeder.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SaintSender.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SaintSeder.Designer.cs">
-      <DependentUpon>SaintSeder.cs</DependentUpon>
+    <Compile Include="SaintSender.Designer.cs">
+      <DependentUpon>SaintSender.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -101,9 +107,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SaintSeder.resx">
-      <DependentUpon>SaintSeder.cs</DependentUpon>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="SaintSender.resx">
+      <DependentUpon>SaintSender.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Recources\mailbox.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

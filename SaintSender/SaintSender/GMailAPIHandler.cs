@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SaintSender
 {
-    class MailHandler
+    class GmailAPIHandler
     {
         static string[] Scopes = { GmailService.Scope.GmailReadonly };
         static string ApplicationName = "Gmail API .NET Quickstart";
@@ -21,10 +21,10 @@ namespace SaintSender
         GmailService service;
         const string userId = "me";
 
-        public MailHandler()
+        public GmailAPIHandler()
         {
-            credential = MailHandler.GetCredential();
-            service = MailHandler.GetService(credential);
+            credential = GmailAPIHandler.GetCredential();
+            service = GmailAPIHandler.GetService(credential);
         }
 
         public static UserCredential GetCredential()

@@ -1,6 +1,6 @@
 ﻿namespace SaintSender
 {
-    partial class SaintSeder
+    partial class SaintSender
     {
         /// <summary>
         /// Required designer variable.
@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.btnCompose = new System.Windows.Forms.Button();
+            this.dataGVListEmails = new System.Windows.Forms.DataGridView();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.btnCompose = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.checkBSelectAll = new System.Windows.Forms.CheckBox();
@@ -43,10 +43,16 @@
             this.MenuItemSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.ColSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGVListEmails)).BeginInit();
             this.MenuAccount.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,8 +67,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.dataGVListEmails);
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox2);
-            this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(747, 313);
             this.splitContainer1.SplitterDistance = 154;
             this.splitContainer1.TabIndex = 0;
@@ -75,13 +81,32 @@
             this.treeView1.Size = new System.Drawing.Size(154, 313);
             this.treeView1.TabIndex = 0;
             // 
-            // richTextBox1
+            // dataGVListEmails
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(2, 3);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(587, 199);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.dataGVListEmails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGVListEmails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGVListEmails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColSelected,
+            this.ColFrom,
+            this.ColSubject,
+            this.ColMessage,
+            this.ColDate});
+            this.dataGVListEmails.Location = new System.Drawing.Point(3, 3);
+            this.dataGVListEmails.MultiSelect = false;
+            this.dataGVListEmails.Name = "dataGVListEmails";
+            this.dataGVListEmails.ReadOnly = true;
+            this.dataGVListEmails.RowHeadersVisible = false;
+            this.dataGVListEmails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGVListEmails.Size = new System.Drawing.Size(586, 199);
+            this.dataGVListEmails.TabIndex = 2;
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(2, 208);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(587, 102);
+            this.richTextBox2.TabIndex = 1;
+            this.richTextBox2.Text = "";
             // 
             // btnCompose
             // 
@@ -91,14 +116,6 @@
             this.btnCompose.TabIndex = 1;
             this.btnCompose.Text = "Compose";
             this.btnCompose.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(2, 208);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(587, 102);
-            this.richTextBox2.TabIndex = 1;
-            this.richTextBox2.Text = "";
             // 
             // textBox1
             // 
@@ -119,7 +136,7 @@
             // checkBSelectAll
             // 
             this.checkBSelectAll.AutoSize = true;
-            this.checkBSelectAll.Location = new System.Drawing.Point(175, 77);
+            this.checkBSelectAll.Location = new System.Drawing.Point(222, 79);
             this.checkBSelectAll.Name = "checkBSelectAll";
             this.checkBSelectAll.Size = new System.Drawing.Size(70, 17);
             this.checkBSelectAll.TabIndex = 4;
@@ -171,11 +188,44 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             // 
-            // SaintSeder
+            // ColSelected
+            // 
+            this.ColSelected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColSelected.HeaderText = "Selected";
+            this.ColSelected.Name = "ColSelected";
+            this.ColSelected.ReadOnly = true;
+            this.ColSelected.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColSelected.Width = 55;
+            // 
+            // ColFrom
+            // 
+            this.ColFrom.HeaderText = "From";
+            this.ColFrom.Name = "ColFrom";
+            this.ColFrom.ReadOnly = true;
+            // 
+            // ColSubject
+            // 
+            this.ColSubject.HeaderText = "Subject";
+            this.ColSubject.Name = "ColSubject";
+            this.ColSubject.ReadOnly = true;
+            // 
+            // ColMessage
+            // 
+            this.ColMessage.HeaderText = "Message";
+            this.ColMessage.Name = "ColMessage";
+            this.ColMessage.ReadOnly = true;
+            // 
+            // ColDate
+            // 
+            this.ColDate.HeaderText = "Date";
+            this.ColDate.Name = "ColDate";
+            this.ColDate.ReadOnly = true;
+            // 
+            // SaintSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 436);
+            this.ClientSize = new System.Drawing.Size(765, 436);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.labelAccount);
             this.Controls.Add(this.checkBSelectAll);
@@ -183,13 +233,14 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnCompose);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "SaintSeder";
-            this.Text = "SaintSeder";
+            this.Name = "SaintSender";
+            this.Text = "SaintSender";
             this.Load += new System.EventHandler(this.SaintSeder_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGVListEmails)).EndInit();
             this.MenuAccount.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -200,7 +251,6 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Button btnCompose;
         private System.Windows.Forms.TextBox textBox1;
@@ -212,5 +262,11 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemSettings;
         private System.Windows.Forms.ToolStripMenuItem MenuItemLogout;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.DataGridView dataGVListEmails;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColSelected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColFrom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSubject;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMessage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDate;
     }
 }

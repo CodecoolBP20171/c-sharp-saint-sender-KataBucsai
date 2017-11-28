@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Apis.Gmail.v1.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,16 +11,22 @@ using System.Windows.Forms;
 
 namespace SaintSender
 {
-    public partial class SaintSeder : Form
+    public partial class SaintSender : Form
     {
-        public SaintSeder()
+        GmailAPIHandler mailHandler;
+
+        public SaintSender()
         {
             InitializeComponent();
         }
 
         private void SaintSeder_Load(object sender, EventArgs e)
         {
+            List<Google.Apis.Gmail.v1.Data.Message> messages = EmailDataHandler.GetEmailList();
+            foreach (var message in messages)
+            {
 
+            }
         }
     }
 }

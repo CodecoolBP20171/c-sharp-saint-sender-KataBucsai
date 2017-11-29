@@ -46,7 +46,6 @@
             this.ColSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -70,7 +69,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.dataGVListEmails);
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox2);
             this.splitContainer1.Size = new System.Drawing.Size(747, 313);
-            this.splitContainer1.SplitterDistance = 154;
+            this.splitContainer1.SplitterDistance = 131;
             this.splitContainer1.TabIndex = 0;
             // 
             // treeView1
@@ -78,7 +77,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(154, 313);
+            this.treeView1.Size = new System.Drawing.Size(131, 313);
             this.treeView1.TabIndex = 0;
             // 
             // dataGVListEmails
@@ -89,22 +88,23 @@
             this.ColSelected,
             this.ColFrom,
             this.ColSubject,
-            this.ColMessage,
             this.ColDate});
             this.dataGVListEmails.Location = new System.Drawing.Point(3, 3);
             this.dataGVListEmails.MultiSelect = false;
             this.dataGVListEmails.Name = "dataGVListEmails";
             this.dataGVListEmails.ReadOnly = true;
             this.dataGVListEmails.RowHeadersVisible = false;
+            this.dataGVListEmails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGVListEmails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGVListEmails.Size = new System.Drawing.Size(586, 199);
+            this.dataGVListEmails.Size = new System.Drawing.Size(609, 157);
             this.dataGVListEmails.TabIndex = 2;
+            this.dataGVListEmails.Click += new System.EventHandler(this.dataGVListEmails_Click);
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(2, 208);
+            this.richTextBox2.Location = new System.Drawing.Point(2, 166);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(587, 102);
+            this.richTextBox2.Size = new System.Drawing.Size(610, 144);
             this.richTextBox2.TabIndex = 1;
             this.richTextBox2.Text = "";
             // 
@@ -112,7 +112,7 @@
             // 
             this.btnCompose.Location = new System.Drawing.Point(0, 73);
             this.btnCompose.Name = "btnCompose";
-            this.btnCompose.Size = new System.Drawing.Size(154, 23);
+            this.btnCompose.Size = new System.Drawing.Size(131, 23);
             this.btnCompose.TabIndex = 1;
             this.btnCompose.Text = "Compose";
             this.btnCompose.UseVisualStyleBackColor = true;
@@ -136,7 +136,7 @@
             // checkBSelectAll
             // 
             this.checkBSelectAll.AutoSize = true;
-            this.checkBSelectAll.Location = new System.Drawing.Point(222, 79);
+            this.checkBSelectAll.Location = new System.Drawing.Point(159, 77);
             this.checkBSelectAll.Name = "checkBSelectAll";
             this.checkBSelectAll.Size = new System.Drawing.Size(70, 17);
             this.checkBSelectAll.TabIndex = 4;
@@ -209,12 +209,6 @@
             this.ColSubject.Name = "ColSubject";
             this.ColSubject.ReadOnly = true;
             // 
-            // ColMessage
-            // 
-            this.ColMessage.HeaderText = "Message";
-            this.ColMessage.Name = "ColMessage";
-            this.ColMessage.ReadOnly = true;
-            // 
             // ColDate
             // 
             this.ColDate.HeaderText = "Date";
@@ -266,7 +260,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColSelected;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColFrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSubject;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColMessage;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDate;
     }
 }

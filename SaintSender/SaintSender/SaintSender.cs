@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +14,6 @@ namespace SaintSender
 {
     public partial class SaintSender : Form
     {
-        GmailAPIHandler mailHandler;
 
         public SaintSender()
         {
@@ -22,11 +22,24 @@ namespace SaintSender
 
         private void SaintSeder_Load(object sender, EventArgs e)
         {
-            List<Google.Apis.Gmail.v1.Data.Message> messages = EmailDataHandler.GetEmailList();
+            IEnumerable<MailMessage> messages = EmailDataHandler.GetEmailList();
+            int counter = 0;
             foreach (var message in messages)
             {
-
+                DataGridViewRow row = new DataGridViewRow();
+                var From = message.From;
+                var Subject = message.Subject;
+                var Date = message.Headers["Date"];               
+                var rowIndex = dataGVListEmails.Rows.Add(new object[] {false, From, Subject, Date});
+                dataGVListEmails.Rows[rowIndex].Tag = message;
+                counter++;
             }
+        }
+
+        private void dataGVListEmails_Click(object sender, EventArgs e)
+        {
+            MailMessage message = (MailMessage)dataGVListEmails.SelectedRows[0].Tag;
+            richTextBox2.Text = message.Body;
         }
     }
 }

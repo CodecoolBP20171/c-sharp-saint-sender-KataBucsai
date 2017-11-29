@@ -42,5 +42,18 @@ namespace SaintSender
                 return mailboxes;
             }
         }
+
+        public static IEnumerable<MailMessage> GetSearchedMessages(string pattern)
+        {
+            IEnumerable<MailMessage> messages;
+            ImapClient client = GetClient();
+            using (client)
+            {
+                IEnumerable<uint> uids = client.Search(SearchCondition.From(pattern).Or(
+                    SearchCondition.Subject(pattern)));
+                messages = client.GetMessages(uids);
+            }
+            return messages;
+        }
     }
 }

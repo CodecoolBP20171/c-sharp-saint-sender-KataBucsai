@@ -27,7 +27,7 @@ namespace SaintSender
             {
                 string mailboxName = mailbox;
                 if (!mailbox.Equals("INBOX"))
-                {                    
+                {
                     mailboxName = mailbox.Substring(mailbox.IndexOf('/') + 1);
                 }
                 ListViewItem listViewItem = new ListViewItem(mailboxName);
@@ -35,14 +35,21 @@ namespace SaintSender
                 listViewMailboxes.Items.Add(listViewItem);
             }
             IEnumerable<MailMessage> messages = EmailDataHandler.GetEmailList();
+            ShowMails(messages);
+
+            btnSearch.Enabled = false;
+        }
+
+        private void ShowMails(IEnumerable<MailMessage> messages)
+        {
             int counter = 0;
             foreach (var message in messages)
             {
                 DataGridViewRow row = new DataGridViewRow();
                 var From = message.From;
                 var Subject = message.Subject;
-                var Date = message.Headers["Date"];               
-                var rowIndex = dataGVListEmails.Rows.Add(new object[] {false, From, Subject, Date});
+                var Date = message.Headers["Date"];
+                var rowIndex = dataGVListEmails.Rows.Add(new object[] { false, From, Subject, Date });
                 dataGVListEmails.Rows[rowIndex].Tag = message;
                 counter++;
             }
@@ -52,6 +59,23 @@ namespace SaintSender
         {
             MailMessage message = (MailMessage)dataGVListEmails.SelectedRows[0].Tag;
             richTextBox2.Text = message.Body;
+        }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            btnSearch.ForeColor = Color.Black;
+            btnSearch.Enabled = true;
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string pattern = textBoxSearch.Text;
+            IEnumerable<MailMessage> messages = GmailManager.GetSearchedMessages(pattern);
+            if (messages.Count() > 0)
+            {
+                dataGVListEmails.Rows.Clear();
+                ShowMails(messages);
+            }
         }
     }
 }

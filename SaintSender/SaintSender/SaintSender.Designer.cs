@@ -38,7 +38,7 @@
             this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.btnCompose = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.checkBSelectAll = new System.Windows.Forms.CheckBox();
             this.labelAccount = new System.Windows.Forms.Label();
@@ -146,21 +146,24 @@
             this.btnCompose.Text = "Compose";
             this.btnCompose.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // textBoxSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(160, 9);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(239, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBoxSearch.Location = new System.Drawing.Point(160, 9);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(239, 20);
+            this.textBoxSearch.TabIndex = 2;
+            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
             // 
             // btnSearch
             // 
+            this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.btnSearch.Location = new System.Drawing.Point(79, 7);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 3;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // checkBSelectAll
             // 
@@ -226,7 +229,7 @@
             this.Controls.Add(this.labelAccount);
             this.Controls.Add(this.checkBSelectAll);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.btnCompose);
             this.Controls.Add(this.splitContainer1);
             this.Name = "SaintSender";
@@ -248,7 +251,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Button btnCompose;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.CheckBox checkBSelectAll;
         private System.Windows.Forms.Label labelAccount;

@@ -22,6 +22,18 @@ namespace SaintSender
 
         private void SaintSeder_Load(object sender, EventArgs e)
         {
+            IEnumerable<string> mailboxes = GmailManager.GetMailboxes();
+            foreach (var mailbox in mailboxes)
+            {
+                string mailboxName = mailbox;
+                if (!mailbox.Equals("INBOX"))
+                {                    
+                    mailboxName = mailbox.Substring(mailbox.IndexOf('/') + 1);
+                }
+                ListViewItem listViewItem = new ListViewItem(mailboxName);
+                listViewItem.Tag = mailbox;
+                listViewMailboxes.Items.Add(listViewItem);
+            }
             IEnumerable<MailMessage> messages = EmailDataHandler.GetEmailList();
             int counter = 0;
             foreach (var message in messages)

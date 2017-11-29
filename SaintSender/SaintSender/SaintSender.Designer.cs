@@ -30,8 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.listViewMailboxes = new System.Windows.Forms.ListView();
             this.dataGVListEmails = new System.Windows.Forms.DataGridView();
+            this.ColSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.btnCompose = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -43,10 +47,6 @@
             this.MenuItemSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.ColSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,7 +62,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.treeView1);
+            this.splitContainer1.Panel1.Controls.Add(this.listViewMailboxes);
             // 
             // splitContainer1.Panel2
             // 
@@ -72,13 +72,15 @@
             this.splitContainer1.SplitterDistance = 131;
             this.splitContainer1.TabIndex = 0;
             // 
-            // treeView1
+            // listViewMailboxes
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(131, 313);
-            this.treeView1.TabIndex = 0;
+            this.listViewMailboxes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewMailboxes.Location = new System.Drawing.Point(0, 0);
+            this.listViewMailboxes.Name = "listViewMailboxes";
+            this.listViewMailboxes.Size = new System.Drawing.Size(131, 313);
+            this.listViewMailboxes.TabIndex = 0;
+            this.listViewMailboxes.UseCompatibleStateImageBehavior = false;
+            this.listViewMailboxes.View = System.Windows.Forms.View.List;
             // 
             // dataGVListEmails
             // 
@@ -99,6 +101,33 @@
             this.dataGVListEmails.Size = new System.Drawing.Size(609, 157);
             this.dataGVListEmails.TabIndex = 2;
             this.dataGVListEmails.Click += new System.EventHandler(this.dataGVListEmails_Click);
+            // 
+            // ColSelected
+            // 
+            this.ColSelected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColSelected.HeaderText = "Selected";
+            this.ColSelected.Name = "ColSelected";
+            this.ColSelected.ReadOnly = true;
+            this.ColSelected.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColSelected.Width = 55;
+            // 
+            // ColFrom
+            // 
+            this.ColFrom.HeaderText = "From";
+            this.ColFrom.Name = "ColFrom";
+            this.ColFrom.ReadOnly = true;
+            // 
+            // ColSubject
+            // 
+            this.ColSubject.HeaderText = "Subject";
+            this.ColSubject.Name = "ColSubject";
+            this.ColSubject.ReadOnly = true;
+            // 
+            // ColDate
+            // 
+            this.ColDate.HeaderText = "Date";
+            this.ColDate.Name = "ColDate";
+            this.ColDate.ReadOnly = true;
             // 
             // richTextBox2
             // 
@@ -188,33 +217,6 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             // 
-            // ColSelected
-            // 
-            this.ColSelected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ColSelected.HeaderText = "Selected";
-            this.ColSelected.Name = "ColSelected";
-            this.ColSelected.ReadOnly = true;
-            this.ColSelected.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColSelected.Width = 55;
-            // 
-            // ColFrom
-            // 
-            this.ColFrom.HeaderText = "From";
-            this.ColFrom.Name = "ColFrom";
-            this.ColFrom.ReadOnly = true;
-            // 
-            // ColSubject
-            // 
-            this.ColSubject.HeaderText = "Subject";
-            this.ColSubject.Name = "ColSubject";
-            this.ColSubject.ReadOnly = true;
-            // 
-            // ColDate
-            // 
-            this.ColDate.HeaderText = "Date";
-            this.ColDate.Name = "ColDate";
-            this.ColDate.ReadOnly = true;
-            // 
             // SaintSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -244,7 +246,6 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Button btnCompose;
         private System.Windows.Forms.TextBox textBox1;
@@ -261,5 +262,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColFrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSubject;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDate;
+        private System.Windows.Forms.ListView listViewMailboxes;
     }
 }

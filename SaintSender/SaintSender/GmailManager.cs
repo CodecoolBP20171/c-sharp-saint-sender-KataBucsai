@@ -32,5 +32,15 @@ namespace SaintSender
 
             return messages;
         }
+
+        public static IEnumerable<string> GetMailboxes()
+        {
+            ImapClient client = GetClient();
+            using (client)
+            {
+                IEnumerable<string> mailboxes = client.ListMailboxes();
+                return mailboxes;
+            }
+        }
     }
 }

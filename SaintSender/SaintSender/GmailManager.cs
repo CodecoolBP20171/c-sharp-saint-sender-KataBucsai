@@ -77,7 +77,7 @@ namespace SaintSender
 
         public MailMessage CreateMail(MailMessage originalMail, string newMail)
         {
-            MailMessage reply = new MailMessage(new MailAddress(Username, "Sender"), originalMail.From);
+            MailMessage reply = new MailMessage(new MailAddress(Username, AccountName), originalMail.From);
             string id = originalMail.Headers["Message-ID"];
             reply.Headers.Add("In-Reply-To", id);
             string references = originalMail.Headers["References"];
@@ -110,10 +110,10 @@ namespace SaintSender
             return reply;
         }
 
-        internal void SendMail(MailMessage originalMail, string newMail)
+        internal void SendMail(MailMessage originalMail, string newMailText)
         {
-            MailMessage message = CreateMail(originalMail, newMail);
-            using (SmtpClient client = new SmtpClient(Hostname, 587))
+            MailMessage message = CreateMail(originalMail, newMailText);
+            using (SmtpClient client = new SmtpClient("smtp.gmail.com", 587))
             {
                 // Set SMTP client properties 
                 client.EnableSsl = true;

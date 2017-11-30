@@ -16,6 +16,7 @@ namespace SaintSender
     public partial class SaintSender : Form
     {
         GmailManager gmailManager;
+        System.Windows.Forms.Timer timer;
 
         public SaintSender()
         {
@@ -35,6 +36,10 @@ namespace SaintSender
             ShowMailboxes(mailboxes);
             IEnumerable<MailMessage> messages = gmailManager.GetMessages();
             ShowMails(messages);
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 50000;
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
 
             labelAccount.Text = gmailManager.AccountName;
             btnSearch.Enabled = false;
@@ -123,6 +128,7 @@ namespace SaintSender
         private void MenuItemLogout_Click(object sender, EventArgs e)
         {
             InitLoggedOutView();
+            timer.Stop();
         }
 
         private void InitLoggedOutView()
@@ -216,6 +222,12 @@ namespace SaintSender
 
                 
             }
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            IEnumerable<MailMessage> messages = gmailManager.GetMessages();
+            ShowMails(messages);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace SaintSender
     {
 
         public string AccountName { get; set; }
+        public bool IsSignedIn { get; set; }
         string Username;
         string Password;
         string Hostname;
@@ -29,7 +30,7 @@ namespace SaintSender
         }
 
 
-        private ImapClient GetClient()
+        public ImapClient GetClient()
         {
             // The default port for IMAP over SSL is 993.
             ImapClient client = new ImapClient(Hostname, 993, Username, Password, AuthMethod.Login, true);

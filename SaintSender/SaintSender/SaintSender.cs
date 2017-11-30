@@ -1,4 +1,5 @@
 ﻿using Google.Apis.Gmail.v1.Data;
+using S22.Imap;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,13 +21,17 @@ namespace SaintSender
         {
             InitializeComponent();
             gmailManager = new GmailManager();
-            gmailManager.InitAccount("tesztelemaprogramom@gmail.com", "Tesytelem123");
+            gmailManager.InitAccount("tesztelemaproramom@gmail.com", "Tesytelem123");
         }
 
         private void SaintSeder_Load(object sender, EventArgs e)
         {
+            InitLoggedOutView();
+        }
 
-            IEnumerable<string> mailboxes = gmailManager.GetMailboxes();
+        private void Account_Load()
+        { 
+            IEnumerable<string> mailboxes = gmailManager.GetMailboxes();           
             ShowMailboxes(mailboxes);
             IEnumerable<MailMessage> messages = gmailManager.GetMessages();
             ShowMails(messages);
@@ -98,6 +103,89 @@ namespace SaintSender
                 var rowIndex = dataGVListEmails.Rows.Add(new object[] { false, From, Subject, Date });
                 dataGVListEmails.Rows[rowIndex].Tag = message;
                 counter++;
+            }
+        }
+
+        private void labelAccount_Click(object sender, EventArgs e)
+        {
+            MenuItemSignIn.Visible = false;
+            Point ptLowerLeft = new Point(0, labelAccount.Height);
+            ptLowerLeft = labelAccount.PointToScreen(ptLowerLeft);
+            MenuAccount.Show(ptLowerLeft);
+
+        }
+
+        private void MenuItemLogout_Click(object sender, EventArgs e)
+        {
+            InitLoggedOutView();
+        }
+
+        private void InitLoggedOutView()
+        {
+            labelAccount.Visible = false;
+            labelUsername.Visible = true;
+            labelPassword.Visible = true;
+            labelInputNotVallid.Visible = false;
+            btnCompose.Visible = false;
+            btnRefresh.Visible = false;
+            btnReply.Visible = false;
+            btnReplyAll.Visible = false;
+            btnSearch.Visible = false;
+            btnSignIn.Visible = true;
+            dataGVListEmails.Visible = false;
+            textBoxSearch.Visible = false;
+            textBoxPassword.Visible = true;
+            textBoxUsername.Visible = true;
+            richTextBox2.Visible = false;
+            listViewMailboxes.Visible = false;
+            splitContainer1.Visible = false;
+            checkBSelectAll.Visible = false;
+
+            textBoxSearch.Clear();
+            dataGVListEmails.Rows.Clear();
+            richTextBox2.Clear();
+            listViewMailboxes.Clear();
+        }
+
+        private void InitSignedInView()
+        {
+            labelAccount.Visible = true;
+            labelUsername.Visible = false;
+            labelPassword.Visible = false;
+            labelInputNotVallid.Visible = false;
+            btnCompose.Visible = true;
+            btnRefresh.Visible = true;
+            btnReply.Visible = true;
+            btnReplyAll.Visible = true;
+            btnSearch.Visible = true;
+            btnSignIn.Visible = false;
+            dataGVListEmails.Visible = true;
+            textBoxSearch.Visible = true;
+            textBoxPassword.Visible = false;
+            textBoxUsername.Visible = false;
+            richTextBox2.Visible = true;
+            listViewMailboxes.Visible = true;
+            splitContainer1.Visible = true;
+            checkBSelectAll.Visible = true;
+
+            textBoxUsername.Clear();
+            textBoxPassword.Clear();
+        }
+
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            string Username = textBoxUsername.Text;
+            string Password = textBoxPassword.Text;
+            try
+            {
+                gmailManager.InitAccount(Username, Password);
+                Account_Load();
+                InitSignedInView();
+            }
+            catch (InvalidCredentialsException er)
+            {
+                InitLoggedOutView();
+                labelInputNotVallid.Visible = true;
             }
         }
     }

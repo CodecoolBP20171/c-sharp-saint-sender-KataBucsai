@@ -47,8 +47,14 @@
             this.ColFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnReply = new System.Windows.Forms.Button();
+            this.btnReplyAll = new System.Windows.Forms.Button();
+            this.labelUsername = new System.Windows.Forms.Label();
+            this.textBoxUsername = new System.Windows.Forms.TextBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.labelPassword = new System.Windows.Forms.Label();
+            this.btnSignIn = new System.Windows.Forms.Button();
+            this.labelInputNotVallid = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,8 +70,8 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.button2);
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.btnReplyAll);
+            this.splitContainer1.Panel1.Controls.Add(this.btnReply);
             this.splitContainer1.Panel1.Controls.Add(this.listViewMailboxes);
             // 
             // splitContainer1.Panel2
@@ -117,7 +123,7 @@
             // 
             this.btnCompose.Location = new System.Drawing.Point(12, 73);
             this.btnCompose.Name = "btnCompose";
-            this.btnCompose.Size = new System.Drawing.Size(103, 23);
+            this.btnCompose.Size = new System.Drawing.Size(100, 23);
             this.btnCompose.TabIndex = 1;
             this.btnCompose.Text = "Compose";
             this.btnCompose.UseVisualStyleBackColor = true;
@@ -135,7 +141,7 @@
             this.btnSearch.ForeColor = System.Drawing.Color.Gray;
             this.btnSearch.Location = new System.Drawing.Point(40, 7);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(72, 23);
             this.btnSearch.TabIndex = 3;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -154,13 +160,16 @@
             // labelAccount
             // 
             this.labelAccount.AutoSize = true;
+            this.labelAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAccount.ForeColor = System.Drawing.Color.Teal;
             this.labelAccount.Location = new System.Drawing.Point(793, 12);
             this.labelAccount.Name = "labelAccount";
             this.labelAccount.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.labelAccount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.labelAccount.Size = new System.Drawing.Size(47, 23);
+            this.labelAccount.Size = new System.Drawing.Size(54, 23);
             this.labelAccount.TabIndex = 6;
             this.labelAccount.Text = "Account";
+            this.labelAccount.Click += new System.EventHandler(this.labelAccount_Click);
             // 
             // MenuAccount
             // 
@@ -188,12 +197,13 @@
             this.MenuItemLogout.Name = "MenuItemLogout";
             this.MenuItemLogout.Size = new System.Drawing.Size(116, 22);
             this.MenuItemLogout.Text = "Log out";
+            this.MenuItemLogout.Click += new System.EventHandler(this.MenuItemLogout_Click);
             // 
             // btnRefresh
             // 
             this.btnRefresh.Location = new System.Drawing.Point(40, 36);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.Size = new System.Drawing.Size(72, 23);
             this.btnRefresh.TabIndex = 8;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -229,29 +239,86 @@
             this.ColDate.ReadOnly = true;
             this.ColDate.Width = 249;
             // 
-            // button1
+            // btnReply
             // 
-            this.button1.Location = new System.Drawing.Point(14, 190);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnReply.Location = new System.Drawing.Point(0, 163);
+            this.btnReply.Name = "btnReply";
+            this.btnReply.Size = new System.Drawing.Size(100, 23);
+            this.btnReply.TabIndex = 1;
+            this.btnReply.Text = "Reply";
+            this.btnReply.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnReplyAll
             // 
-            this.button2.Location = new System.Drawing.Point(14, 219);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnReplyAll.Location = new System.Drawing.Point(0, 192);
+            this.btnReplyAll.Name = "btnReplyAll";
+            this.btnReplyAll.Size = new System.Drawing.Size(100, 23);
+            this.btnReplyAll.TabIndex = 2;
+            this.btnReplyAll.Text = "Reply All";
+            this.btnReplyAll.UseVisualStyleBackColor = true;
+            // 
+            // labelUsername
+            // 
+            this.labelUsername.AutoSize = true;
+            this.labelUsername.Location = new System.Drawing.Point(293, 45);
+            this.labelUsername.Name = "labelUsername";
+            this.labelUsername.Size = new System.Drawing.Size(55, 13);
+            this.labelUsername.TabIndex = 9;
+            this.labelUsername.Text = "Username";
+            // 
+            // textBoxUsername
+            // 
+            this.textBoxUsername.Location = new System.Drawing.Point(365, 42);
+            this.textBoxUsername.Name = "textBoxUsername";
+            this.textBoxUsername.Size = new System.Drawing.Size(164, 20);
+            this.textBoxUsername.TabIndex = 10;
+            // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.Location = new System.Drawing.Point(365, 68);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.Size = new System.Drawing.Size(164, 20);
+            this.textBoxPassword.TabIndex = 12;
+            // 
+            // labelPassword
+            // 
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Location = new System.Drawing.Point(295, 71);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(53, 13);
+            this.labelPassword.TabIndex = 11;
+            this.labelPassword.Text = "Password";
+            // 
+            // btnSignIn
+            // 
+            this.btnSignIn.Location = new System.Drawing.Point(552, 66);
+            this.btnSignIn.Name = "btnSignIn";
+            this.btnSignIn.Size = new System.Drawing.Size(75, 23);
+            this.btnSignIn.TabIndex = 13;
+            this.btnSignIn.Text = "Sign in";
+            this.btnSignIn.UseVisualStyleBackColor = true;
+            this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
+            // 
+            // labelInputNotVallid
+            // 
+            this.labelInputNotVallid.AutoSize = true;
+            this.labelInputNotVallid.Location = new System.Drawing.Point(362, 17);
+            this.labelInputNotVallid.Name = "labelInputNotVallid";
+            this.labelInputNotVallid.Size = new System.Drawing.Size(168, 13);
+            this.labelInputNotVallid.TabIndex = 14;
+            this.labelInputNotVallid.Text = "Username or password is not valid";
             // 
             // SaintSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(952, 530);
+            this.ClientSize = new System.Drawing.Size(1016, 530);
+            this.Controls.Add(this.labelInputNotVallid);
+            this.Controls.Add(this.btnSignIn);
+            this.Controls.Add(this.textBoxPassword);
+            this.Controls.Add(this.labelPassword);
+            this.Controls.Add(this.textBoxUsername);
+            this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.labelAccount);
             this.Controls.Add(this.checkBSelectAll);
@@ -293,7 +360,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColFrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSubject;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDate;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnReplyAll;
+        private System.Windows.Forms.Button btnReply;
+        private System.Windows.Forms.Label labelUsername;
+        private System.Windows.Forms.TextBox textBoxUsername;
+        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.Label labelPassword;
+        private System.Windows.Forms.Button btnSignIn;
+        private System.Windows.Forms.Label labelInputNotVallid;
     }
 }

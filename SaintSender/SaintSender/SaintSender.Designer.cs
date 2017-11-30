@@ -32,10 +32,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listViewMailboxes = new System.Windows.Forms.ListView();
             this.dataGVListEmails = new System.Windows.Forms.DataGridView();
-            this.ColSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.btnCompose = new System.Windows.Forms.Button();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
@@ -47,6 +43,12 @@
             this.MenuItemSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.ColSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -57,98 +59,72 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(0, 102);
+            this.splitContainer1.Location = new System.Drawing.Point(12, 100);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button2);
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.listViewMailboxes);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGVListEmails);
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox2);
-            this.splitContainer1.Size = new System.Drawing.Size(747, 313);
-            this.splitContainer1.SplitterDistance = 131;
+            this.splitContainer1.Size = new System.Drawing.Size(928, 395);
+            this.splitContainer1.SplitterDistance = 103;
             this.splitContainer1.TabIndex = 0;
             // 
             // listViewMailboxes
             // 
-            this.listViewMailboxes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewMailboxes.Location = new System.Drawing.Point(0, 0);
             this.listViewMailboxes.Name = "listViewMailboxes";
-            this.listViewMailboxes.Size = new System.Drawing.Size(131, 313);
+            this.listViewMailboxes.Size = new System.Drawing.Size(100, 157);
             this.listViewMailboxes.TabIndex = 0;
             this.listViewMailboxes.UseCompatibleStateImageBehavior = false;
             this.listViewMailboxes.View = System.Windows.Forms.View.List;
             // 
             // dataGVListEmails
             // 
-            this.dataGVListEmails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGVListEmails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGVListEmails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSelected,
             this.ColFrom,
             this.ColSubject,
             this.ColDate});
-            this.dataGVListEmails.Location = new System.Drawing.Point(3, 3);
+            this.dataGVListEmails.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dataGVListEmails.Location = new System.Drawing.Point(0, 0);
             this.dataGVListEmails.MultiSelect = false;
             this.dataGVListEmails.Name = "dataGVListEmails";
             this.dataGVListEmails.ReadOnly = true;
             this.dataGVListEmails.RowHeadersVisible = false;
             this.dataGVListEmails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGVListEmails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGVListEmails.Size = new System.Drawing.Size(609, 157);
+            this.dataGVListEmails.Size = new System.Drawing.Size(821, 157);
             this.dataGVListEmails.TabIndex = 2;
             this.dataGVListEmails.Click += new System.EventHandler(this.dataGVListEmails_Click);
             // 
-            // ColSelected
-            // 
-            this.ColSelected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ColSelected.HeaderText = "Selected";
-            this.ColSelected.Name = "ColSelected";
-            this.ColSelected.ReadOnly = true;
-            this.ColSelected.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColSelected.Width = 55;
-            // 
-            // ColFrom
-            // 
-            this.ColFrom.HeaderText = "From";
-            this.ColFrom.Name = "ColFrom";
-            this.ColFrom.ReadOnly = true;
-            // 
-            // ColSubject
-            // 
-            this.ColSubject.HeaderText = "Subject";
-            this.ColSubject.Name = "ColSubject";
-            this.ColSubject.ReadOnly = true;
-            // 
-            // ColDate
-            // 
-            this.ColDate.HeaderText = "Date";
-            this.ColDate.Name = "ColDate";
-            this.ColDate.ReadOnly = true;
-            // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(2, 166);
+            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.richTextBox2.Location = new System.Drawing.Point(0, 163);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(610, 144);
+            this.richTextBox2.Size = new System.Drawing.Size(821, 232);
             this.richTextBox2.TabIndex = 1;
             this.richTextBox2.Text = "";
             // 
             // btnCompose
             // 
-            this.btnCompose.Location = new System.Drawing.Point(0, 73);
+            this.btnCompose.Location = new System.Drawing.Point(12, 73);
             this.btnCompose.Name = "btnCompose";
-            this.btnCompose.Size = new System.Drawing.Size(131, 23);
+            this.btnCompose.Size = new System.Drawing.Size(103, 23);
             this.btnCompose.TabIndex = 1;
             this.btnCompose.Text = "Compose";
             this.btnCompose.UseVisualStyleBackColor = true;
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(160, 9);
+            this.textBoxSearch.Location = new System.Drawing.Point(121, 9);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(239, 20);
             this.textBoxSearch.TabIndex = 2;
@@ -156,8 +132,8 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.btnSearch.Location = new System.Drawing.Point(79, 7);
+            this.btnSearch.ForeColor = System.Drawing.Color.Gray;
+            this.btnSearch.Location = new System.Drawing.Point(40, 7);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 3;
@@ -168,7 +144,7 @@
             // checkBSelectAll
             // 
             this.checkBSelectAll.AutoSize = true;
-            this.checkBSelectAll.Location = new System.Drawing.Point(159, 77);
+            this.checkBSelectAll.Location = new System.Drawing.Point(137, 77);
             this.checkBSelectAll.Name = "checkBSelectAll";
             this.checkBSelectAll.Size = new System.Drawing.Size(70, 17);
             this.checkBSelectAll.TabIndex = 4;
@@ -178,9 +154,11 @@
             // labelAccount
             // 
             this.labelAccount.AutoSize = true;
-            this.labelAccount.Location = new System.Drawing.Point(670, 17);
+            this.labelAccount.Location = new System.Drawing.Point(793, 12);
             this.labelAccount.Name = "labelAccount";
-            this.labelAccount.Size = new System.Drawing.Size(47, 13);
+            this.labelAccount.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.labelAccount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labelAccount.Size = new System.Drawing.Size(47, 23);
             this.labelAccount.TabIndex = 6;
             this.labelAccount.Text = "Account";
             // 
@@ -213,18 +191,67 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(659, 71);
+            this.btnRefresh.Location = new System.Drawing.Point(40, 36);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 8;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // ColSelected
+            // 
+            this.ColSelected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColSelected.HeaderText = "Selected";
+            this.ColSelected.Name = "ColSelected";
+            this.ColSelected.ReadOnly = true;
+            this.ColSelected.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColSelected.Width = 55;
+            // 
+            // ColFrom
+            // 
+            this.ColFrom.HeaderText = "From";
+            this.ColFrom.Name = "ColFrom";
+            this.ColFrom.ReadOnly = true;
+            this.ColFrom.Width = 248;
+            // 
+            // ColSubject
+            // 
+            this.ColSubject.HeaderText = "Subject";
+            this.ColSubject.Name = "ColSubject";
+            this.ColSubject.ReadOnly = true;
+            this.ColSubject.Width = 249;
+            // 
+            // ColDate
+            // 
+            this.ColDate.HeaderText = "Date";
+            this.ColDate.Name = "ColDate";
+            this.ColDate.ReadOnly = true;
+            this.ColDate.Width = 249;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(14, 190);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(14, 219);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // SaintSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(765, 436);
+            this.ClientSize = new System.Drawing.Size(952, 530);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.labelAccount);
             this.Controls.Add(this.checkBSelectAll);
@@ -261,10 +288,12 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemLogout;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridView dataGVListEmails;
+        private System.Windows.Forms.ListView listViewMailboxes;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColSelected;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColFrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSubject;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDate;
-        private System.Windows.Forms.ListView listViewMailboxes;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

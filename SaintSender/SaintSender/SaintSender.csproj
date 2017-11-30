@@ -86,7 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIConnect.cs" />
-    <Compile Include="EmailDataHandler.cs" />
     <Compile Include="GmailManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

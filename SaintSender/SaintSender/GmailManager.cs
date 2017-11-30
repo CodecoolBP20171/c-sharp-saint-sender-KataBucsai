@@ -10,17 +10,33 @@ namespace SaintSender
 {
     class GmailManager
     {
-        private static ImapClient GetClient()
+
+        public string AccountName { get; set; }
+        string Username;
+        string Password;
+        string Hostname;
+
+        public GmailManager()
+        { 
+            this.Hostname = "imap.gmail.com";
+        }
+
+        public void InitAccount(string username, string password)
         {
-            string hostname = "imap.gmail.com";
-            string username = "tesztelemaprogramom@gmail.com";
-            string password = "Tesytelem123";
+            this.Username = username;
+            AccountName = username.Split('@')[0];
+            this.Password = password;
+        }
+
+
+        private ImapClient GetClient()
+        {
             // The default port for IMAP over SSL is 993.
-            ImapClient client = new ImapClient(hostname, 993, username, password, AuthMethod.Login, true);
+            ImapClient client = new ImapClient(Hostname, 993, Username, Password, AuthMethod.Login, true);
             return client;
         }
 
-        public static IEnumerable<MailMessage> GetMessages()
+        public IEnumerable<MailMessage> GetMessages()
         {
             IEnumerable<MailMessage> messages;
             ImapClient client = GetClient();
@@ -33,7 +49,7 @@ namespace SaintSender
             return messages;
         }
 
-        public static IEnumerable<string> GetMailboxes()
+        public IEnumerable<string> GetMailboxes()
         {
             ImapClient client = GetClient();
             using (client)
@@ -43,7 +59,7 @@ namespace SaintSender
             }
         }
 
-        public static IEnumerable<MailMessage> GetSearchedMessages(string pattern)
+        public IEnumerable<MailMessage> GetSearchedMessages(string pattern)
         {
             IEnumerable<MailMessage> messages;
             ImapClient client = GetClient();

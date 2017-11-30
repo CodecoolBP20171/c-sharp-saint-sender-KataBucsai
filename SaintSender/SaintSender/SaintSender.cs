@@ -14,15 +14,64 @@ namespace SaintSender
 {
     public partial class SaintSender : Form
     {
+        GmailManager gmailManager;
 
         public SaintSender()
         {
             InitializeComponent();
+            gmailManager = new GmailManager();
+            gmailManager.InitAccount("tesztelemaprogramom@gmail.com", "Tesytelem123");
         }
 
         private void SaintSeder_Load(object sender, EventArgs e)
         {
-            IEnumerable<string> mailboxes = GmailManager.GetMailboxes();
+
+            IEnumerable<string> mailboxes = gmailManager.GetMailboxes();
+            ShowMailboxes(mailboxes);
+            IEnumerable<MailMessage> messages = gmailManager.GetMessages();
+            ShowMails(messages);
+
+            labelAccount.Text = gmailManager.AccountName;
+            btnSearch.Enabled = false;
+        }
+
+        private void dataGVListEmails_Click(object sender, EventArgs e)
+        {
+            MailMessage message = (MailMessage)dataGVListEmails.SelectedRows[0].Tag;
+            richTextBox2.Text = message.Body;
+        }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxSearch.Text.Length > 0)
+            {
+                btnSearch.ForeColor = Color.Black;
+                btnSearch.Enabled = true;
+            } else
+            {
+                btnSearch.ForeColor = Color.Gray;
+                btnSearch.Enabled = false;
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string pattern = textBoxSearch.Text;
+            IEnumerable<MailMessage> messages = gmailManager.GetSearchedMessages(pattern);
+            if (messages.Count() > 0)
+            {
+                ShowMails(messages);
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            IEnumerable<MailMessage> messages = gmailManager.GetMessages();
+            ShowMails(messages);
+        }
+
+        private void ShowMailboxes(IEnumerable<string> mailboxes)
+        {
             foreach (var mailbox in mailboxes)
             {
                 string mailboxName = mailbox;
@@ -34,15 +83,12 @@ namespace SaintSender
                 listViewItem.Tag = mailbox;
                 listViewMailboxes.Items.Add(listViewItem);
             }
-            IEnumerable<MailMessage> messages = EmailDataHandler.GetEmailList();
-            ShowMails(messages);
-
-            btnSearch.Enabled = false;
         }
 
         private void ShowMails(IEnumerable<MailMessage> messages)
         {
             int counter = 0;
+            dataGVListEmails.Rows.Clear();
             foreach (var message in messages)
             {
                 DataGridViewRow row = new DataGridViewRow();
@@ -52,29 +98,6 @@ namespace SaintSender
                 var rowIndex = dataGVListEmails.Rows.Add(new object[] { false, From, Subject, Date });
                 dataGVListEmails.Rows[rowIndex].Tag = message;
                 counter++;
-            }
-        }
-
-        private void dataGVListEmails_Click(object sender, EventArgs e)
-        {
-            MailMessage message = (MailMessage)dataGVListEmails.SelectedRows[0].Tag;
-            richTextBox2.Text = message.Body;
-        }
-
-        private void textBoxSearch_TextChanged(object sender, EventArgs e)
-        {
-            btnSearch.ForeColor = Color.Black;
-            btnSearch.Enabled = true;
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            string pattern = textBoxSearch.Text;
-            IEnumerable<MailMessage> messages = GmailManager.GetSearchedMessages(pattern);
-            if (messages.Count() > 0)
-            {
-                dataGVListEmails.Rows.Clear();
-                ShowMails(messages);
             }
         }
     }

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaintSender));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnSend = new System.Windows.Forms.Button();
             this.btnReplyAll = new System.Windows.Forms.Button();
@@ -86,6 +88,7 @@
             // 
             // btnSend
             // 
+            this.btnSend.ForeColor = System.Drawing.Color.DodgerBlue;
             this.btnSend.Location = new System.Drawing.Point(0, 163);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(100, 23);
@@ -96,6 +99,7 @@
             // 
             // btnReplyAll
             // 
+            this.btnReplyAll.ForeColor = System.Drawing.Color.DodgerBlue;
             this.btnReplyAll.Location = new System.Drawing.Point(0, 221);
             this.btnReplyAll.Name = "btnReplyAll";
             this.btnReplyAll.Size = new System.Drawing.Size(100, 23);
@@ -105,6 +109,7 @@
             // 
             // btnReply
             // 
+            this.btnReply.ForeColor = System.Drawing.Color.DodgerBlue;
             this.btnReply.Location = new System.Drawing.Point(0, 192);
             this.btnReply.Name = "btnReply";
             this.btnReply.Size = new System.Drawing.Size(100, 23);
@@ -115,6 +120,7 @@
             // 
             // listViewMailboxes
             // 
+            this.listViewMailboxes.BackColor = System.Drawing.SystemColors.Window;
             this.listViewMailboxes.Location = new System.Drawing.Point(0, 0);
             this.listViewMailboxes.Name = "listViewMailboxes";
             this.listViewMailboxes.Size = new System.Drawing.Size(100, 157);
@@ -124,6 +130,14 @@
             // 
             // dataGVListEmails
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGVListEmails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGVListEmails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSelected,
             this.ColFrom,
@@ -135,6 +149,8 @@
             this.dataGVListEmails.Name = "dataGVListEmails";
             this.dataGVListEmails.ReadOnly = true;
             this.dataGVListEmails.RowHeadersVisible = false;
+            this.dataGVListEmails.RowTemplate.ReadOnly = true;
+            this.dataGVListEmails.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGVListEmails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGVListEmails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGVListEmails.Size = new System.Drawing.Size(821, 157);
@@ -182,6 +198,7 @@
             // 
             // btnCompose
             // 
+            this.btnCompose.ForeColor = System.Drawing.Color.DodgerBlue;
             this.btnCompose.Location = new System.Drawing.Point(12, 73);
             this.btnCompose.Name = "btnCompose";
             this.btnCompose.Size = new System.Drawing.Size(100, 23);
@@ -212,6 +229,7 @@
             // checkBSelectAll
             // 
             this.checkBSelectAll.AutoSize = true;
+            this.checkBSelectAll.ForeColor = System.Drawing.Color.DodgerBlue;
             this.checkBSelectAll.Location = new System.Drawing.Point(137, 77);
             this.checkBSelectAll.Name = "checkBSelectAll";
             this.checkBSelectAll.Size = new System.Drawing.Size(70, 17);
@@ -223,7 +241,7 @@
             // 
             this.labelAccount.AutoSize = true;
             this.labelAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAccount.ForeColor = System.Drawing.Color.Teal;
+            this.labelAccount.ForeColor = System.Drawing.Color.DodgerBlue;
             this.labelAccount.Location = new System.Drawing.Point(793, 12);
             this.labelAccount.Name = "labelAccount";
             this.labelAccount.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
@@ -263,6 +281,7 @@
             // 
             // btnRefresh
             // 
+            this.btnRefresh.ForeColor = System.Drawing.Color.DodgerBlue;
             this.btnRefresh.Location = new System.Drawing.Point(40, 36);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(72, 23);
@@ -274,6 +293,7 @@
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
+            this.labelUsername.ForeColor = System.Drawing.Color.DodgerBlue;
             this.labelUsername.Location = new System.Drawing.Point(293, 45);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(55, 13);
@@ -291,12 +311,14 @@
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(365, 68);
             this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(164, 20);
             this.textBoxPassword.TabIndex = 12;
             // 
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
+            this.labelPassword.ForeColor = System.Drawing.Color.DodgerBlue;
             this.labelPassword.Location = new System.Drawing.Point(295, 71);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(53, 13);
@@ -305,6 +327,7 @@
             // 
             // btnSignIn
             // 
+            this.btnSignIn.ForeColor = System.Drawing.Color.DodgerBlue;
             this.btnSignIn.Location = new System.Drawing.Point(552, 66);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(75, 23);
@@ -316,6 +339,7 @@
             // labelInputNotVallid
             // 
             this.labelInputNotVallid.AutoSize = true;
+            this.labelInputNotVallid.ForeColor = System.Drawing.Color.Red;
             this.labelInputNotVallid.Location = new System.Drawing.Point(362, 17);
             this.labelInputNotVallid.Name = "labelInputNotVallid";
             this.labelInputNotVallid.Size = new System.Drawing.Size(168, 13);
@@ -340,6 +364,8 @@
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.btnCompose);
             this.Controls.Add(this.splitContainer1);
+            this.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SaintSender";
             this.Text = "SaintSender";
             this.Load += new System.EventHandler(this.SaintSeder_Load);
@@ -370,10 +396,6 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridView dataGVListEmails;
         private System.Windows.Forms.ListView listViewMailboxes;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ColSelected;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColFrom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColSubject;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColDate;
         private System.Windows.Forms.Button btnReplyAll;
         private System.Windows.Forms.Button btnReply;
         private System.Windows.Forms.Label labelUsername;
@@ -383,5 +405,9 @@
         private System.Windows.Forms.Button btnSignIn;
         private System.Windows.Forms.Label labelInputNotVallid;
         private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColSelected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColFrom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSubject;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDate;
     }
 }

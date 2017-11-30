@@ -114,6 +114,7 @@ namespace SaintSender
                 dataGVListEmails.Rows[rowIndex].Tag = message;
                 counter++;
             }
+            dataGVListEmails.Sort(dataGVListEmails.Columns[3], ListSortDirection.Ascending);
         }
 
         private void labelAccount_Click(object sender, EventArgs e)
@@ -211,8 +212,7 @@ namespace SaintSender
         {
 
             try
-            {
-               
+            {              
                 gmailManager.SendMail((MailMessage)richTextBox2.Tag, richTextBox2.Text);
                 richTextBox2.Clear();
                 btnSend.Visible = false;

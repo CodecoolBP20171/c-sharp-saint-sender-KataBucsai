@@ -44,6 +44,9 @@ namespace SaintSender
         {
             MailMessage message = (MailMessage)dataGVListEmails.SelectedRows[0].Tag;
             richTextBox2.Text = message.Body;
+            richTextBox2.Tag = message;
+            btnReply.Visible = true;
+            btnReplyAll.Visible = true;
         }
 
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
@@ -67,6 +70,8 @@ namespace SaintSender
             {
                 ShowMails(messages);
             }
+            btnReply.Visible = false;
+            btnReplyAll.Visible = false;
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -131,6 +136,7 @@ namespace SaintSender
             btnReply.Visible = false;
             btnReplyAll.Visible = false;
             btnSearch.Visible = false;
+            btnSend.Visible = false;
             btnSignIn.Visible = true;
             dataGVListEmails.Visible = false;
             textBoxSearch.Visible = false;
@@ -155,8 +161,6 @@ namespace SaintSender
             labelInputNotVallid.Visible = false;
             btnCompose.Visible = true;
             btnRefresh.Visible = true;
-            btnReply.Visible = true;
-            btnReplyAll.Visible = true;
             btnSearch.Visible = true;
             btnSignIn.Visible = false;
             dataGVListEmails.Visible = true;
@@ -186,6 +190,31 @@ namespace SaintSender
             {
                 InitLoggedOutView();
                 labelInputNotVallid.Visible = true;
+            }
+        }
+
+        private void btnCompose_Click(object sender, EventArgs e)
+        {
+            if (true)
+            {
+                btnSend.Visible = true;
+            }
+        }
+
+        private void btnReply_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+               
+                gmailManager.SendMail((MailMessage)richTextBox2.Tag, richTextBox2.Text);
+                richTextBox2.Clear();
+                btnSend.Visible = false;
+            }
+            catch (Exception)
+            {
+
+                
             }
         }
     }

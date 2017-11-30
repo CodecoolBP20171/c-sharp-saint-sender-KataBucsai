@@ -30,8 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnSend = new System.Windows.Forms.Button();
+            this.btnReplyAll = new System.Windows.Forms.Button();
+            this.btnReply = new System.Windows.Forms.Button();
             this.listViewMailboxes = new System.Windows.Forms.ListView();
             this.dataGVListEmails = new System.Windows.Forms.DataGridView();
+            this.ColSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.btnCompose = new System.Windows.Forms.Button();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
@@ -43,12 +50,6 @@
             this.MenuItemSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.ColSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnReply = new System.Windows.Forms.Button();
-            this.btnReplyAll = new System.Windows.Forms.Button();
             this.labelUsername = new System.Windows.Forms.Label();
             this.textBoxUsername = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
@@ -70,6 +71,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnSend);
             this.splitContainer1.Panel1.Controls.Add(this.btnReplyAll);
             this.splitContainer1.Panel1.Controls.Add(this.btnReply);
             this.splitContainer1.Panel1.Controls.Add(this.listViewMailboxes);
@@ -81,6 +83,35 @@
             this.splitContainer1.Size = new System.Drawing.Size(928, 395);
             this.splitContainer1.SplitterDistance = 103;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // btnSend
+            // 
+            this.btnSend.Location = new System.Drawing.Point(0, 163);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(100, 23);
+            this.btnSend.TabIndex = 3;
+            this.btnSend.Text = "Send";
+            this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnReply_Click);
+            // 
+            // btnReplyAll
+            // 
+            this.btnReplyAll.Location = new System.Drawing.Point(0, 221);
+            this.btnReplyAll.Name = "btnReplyAll";
+            this.btnReplyAll.Size = new System.Drawing.Size(100, 23);
+            this.btnReplyAll.TabIndex = 2;
+            this.btnReplyAll.Text = "Reply All";
+            this.btnReplyAll.UseVisualStyleBackColor = true;
+            // 
+            // btnReply
+            // 
+            this.btnReply.Location = new System.Drawing.Point(0, 192);
+            this.btnReply.Name = "btnReply";
+            this.btnReply.Size = new System.Drawing.Size(100, 23);
+            this.btnReply.TabIndex = 1;
+            this.btnReply.Text = "Reply";
+            this.btnReply.UseVisualStyleBackColor = true;
+            this.btnReply.Click += new System.EventHandler(this.btnReply_Click);
             // 
             // listViewMailboxes
             // 
@@ -110,6 +141,36 @@
             this.dataGVListEmails.TabIndex = 2;
             this.dataGVListEmails.Click += new System.EventHandler(this.dataGVListEmails_Click);
             // 
+            // ColSelected
+            // 
+            this.ColSelected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColSelected.HeaderText = "Selected";
+            this.ColSelected.Name = "ColSelected";
+            this.ColSelected.ReadOnly = true;
+            this.ColSelected.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColSelected.Width = 55;
+            // 
+            // ColFrom
+            // 
+            this.ColFrom.HeaderText = "From";
+            this.ColFrom.Name = "ColFrom";
+            this.ColFrom.ReadOnly = true;
+            this.ColFrom.Width = 248;
+            // 
+            // ColSubject
+            // 
+            this.ColSubject.HeaderText = "Subject";
+            this.ColSubject.Name = "ColSubject";
+            this.ColSubject.ReadOnly = true;
+            this.ColSubject.Width = 249;
+            // 
+            // ColDate
+            // 
+            this.ColDate.HeaderText = "Date";
+            this.ColDate.Name = "ColDate";
+            this.ColDate.ReadOnly = true;
+            this.ColDate.Width = 249;
+            // 
             // richTextBox2
             // 
             this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -127,6 +188,7 @@
             this.btnCompose.TabIndex = 1;
             this.btnCompose.Text = "Compose";
             this.btnCompose.UseVisualStyleBackColor = true;
+            this.btnCompose.Click += new System.EventHandler(this.btnCompose_Click);
             // 
             // textBoxSearch
             // 
@@ -208,54 +270,6 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // ColSelected
-            // 
-            this.ColSelected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ColSelected.HeaderText = "Selected";
-            this.ColSelected.Name = "ColSelected";
-            this.ColSelected.ReadOnly = true;
-            this.ColSelected.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColSelected.Width = 55;
-            // 
-            // ColFrom
-            // 
-            this.ColFrom.HeaderText = "From";
-            this.ColFrom.Name = "ColFrom";
-            this.ColFrom.ReadOnly = true;
-            this.ColFrom.Width = 248;
-            // 
-            // ColSubject
-            // 
-            this.ColSubject.HeaderText = "Subject";
-            this.ColSubject.Name = "ColSubject";
-            this.ColSubject.ReadOnly = true;
-            this.ColSubject.Width = 249;
-            // 
-            // ColDate
-            // 
-            this.ColDate.HeaderText = "Date";
-            this.ColDate.Name = "ColDate";
-            this.ColDate.ReadOnly = true;
-            this.ColDate.Width = 249;
-            // 
-            // btnReply
-            // 
-            this.btnReply.Location = new System.Drawing.Point(0, 163);
-            this.btnReply.Name = "btnReply";
-            this.btnReply.Size = new System.Drawing.Size(100, 23);
-            this.btnReply.TabIndex = 1;
-            this.btnReply.Text = "Reply";
-            this.btnReply.UseVisualStyleBackColor = true;
-            // 
-            // btnReplyAll
-            // 
-            this.btnReplyAll.Location = new System.Drawing.Point(0, 192);
-            this.btnReplyAll.Name = "btnReplyAll";
-            this.btnReplyAll.Size = new System.Drawing.Size(100, 23);
-            this.btnReplyAll.TabIndex = 2;
-            this.btnReplyAll.Text = "Reply All";
-            this.btnReplyAll.UseVisualStyleBackColor = true;
             // 
             // labelUsername
             // 
@@ -368,5 +382,6 @@
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.Button btnSignIn;
         private System.Windows.Forms.Label labelInputNotVallid;
+        private System.Windows.Forms.Button btnSend;
     }
 }

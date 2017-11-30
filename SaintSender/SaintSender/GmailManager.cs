@@ -1,7 +1,9 @@
 ﻿using S22.Imap;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,6 +73,57 @@ namespace SaintSender
                 messages = client.GetMessages(uids);
             }
             return messages;
+        }
+
+        public MailMessage CreateMail(MailMessage originalMail, string newMail)
+        {
+            MailMessage reply = new MailMessage(new MailAddress(Username, "Sender"), originalMail.From);
+            string id = originalMail.Headers["Message-ID"];
+            reply.Headers.Add("In-Reply-To", id);
+            string references = originalMail.Headers["References"];
+
+            if (!string.IsNullOrEmpty(references))
+                references += ' ';
+
+            reply.Headers.Add("References", references + id);
+            if (!originalMail.Subject.StartsWith("Re:", StringComparison.OrdinalIgnoreCase))
+                reply.Subject = "Re: ";
+
+            reply.Subject += originalMail.Subject;
+
+            StringBuilder body = new StringBuilder();
+
+            body.Append(newMail);
+            if (originalMail.Date().HasValue)
+                body.AppendFormat("On {0}, ", originalMail.Date().Value.ToString(CultureInfo.InvariantCulture));
+
+            body.Append(originalMail.From);
+            body.AppendLine(" wrote:");
+
+            if (!string.IsNullOrEmpty(originalMail.Body))
+            {
+                body.AppendLine();
+                body.Append("> " + originalMail.Body.Replace("\r\n", "\r\n> "));
+            }
+            reply.Body = body.ToString();
+
+            return reply;
+        }
+
+        internal void SendMail(MailMessage originalMail, string newMail)
+        {
+            MailMessage message = CreateMail(originalMail, newMail);
+            using (SmtpClient client = new SmtpClient(Hostname, 587))
+            {
+                // Set SMTP client properties 
+                client.EnableSsl = true;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential(Username, Password);
+                client.DeliveryFormat = SmtpDeliveryFormat.International;
+
+                client.Send(message);
+                message.Dispose();
+            }
         }
     }
 }
